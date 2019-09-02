@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --setupFiles ./setupTests.js",
     "eject": "react-scripts eject",
     "test-ci": "npm test --no-watch",
     "feature-test": "testcafe chrome:headless ./src/tests/features/addTaskTest.js"
@@ -36,7 +36,9 @@
     ]
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "testcafe": "^1.4.3"
   }
 }

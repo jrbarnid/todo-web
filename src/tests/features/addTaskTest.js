@@ -9,4 +9,6 @@ test('User adds a task', async t => {
     await t
         .expect(Selector('#task-header').innerText).eql('Tasks')
         .expect(Selector('#task-add').count).eql(1)
+        .click('#task-add')
+        .expect(Selector('#task-0').count).eql(1)
 });
