@@ -7,5 +7,6 @@ fixture `Use the task list`// declare the fixture
 //then create a test and place your code there
 test('User adds a task', async t => {
     await t
-        .expect(Selector('#task-header').innerText).eql('Tasks');
+        .expect(Selector('#task-header').innerText).eql('Tasks')
+        .expect(Selector('#task-add').count).eql(1)
 });
