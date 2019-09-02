@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import '../css/App.css'
+import Task from './Task';
 
 export default () => {
   const [tasks, setTasks] = useState([])
 
   const handleAddTaskClicked = () => {
-    setTasks(prevState => {return [...prevState, '']})
+    let newTasks = [...tasks, {
+      id: tasks.length,
+      value: ''
+    }]
+    setTasks(newTasks)
+  }
+
+  const removeTaskCallback = index => {
+    const newTasks = tasks.filter(task => task.id !== index)
+    setTasks(newTasks)
   }
 
   return (
@@ -20,15 +30,10 @@ export default () => {
           <FontAwesomeIcon icon={faPlus} className="text-success" />
         </span>
       </div>
-      <div>
-        {tasks.map((task, index) => {
-          return (
-            <div key={`task-div-${index}`} className="pb-2">
-              <input id={`task-${index}`} key={`task-${index}`} type="text" />
-            </div>
-          )
-        })}
-      </div>
+      <Task 
+        tasks={tasks} 
+        removeTaskCallback={removeTaskCallback}
+      />
     </div>
   );
 }

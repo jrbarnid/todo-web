@@ -27,4 +27,35 @@ describe('<App />', () => {
     wrapper.find('#task-add').simulate('click')
     expect(wrapper.find('#task-1')).to.have.lengthOf(1)
   })
+
+  it('Removes a task when - is clicked', () => {
+    const wrapper = render()
+    wrapper.find('#task-add').simulate('click')
+    expect(wrapper.find('#task-0')).to.have.lengthOf(1)
+
+    wrapper.find('#task-remove-0').simulate('click')
+    expect(wrapper.find('#task-0')).to.have.lengthOf(0)
+  })
+
+  it('Removes the first task when - is clicked on the first item and 2 tasks exist', () => {
+    const wrapper = render()
+    wrapper.find('#task-add').simulate('click')
+    wrapper.find('#task-add').simulate('click')
+    expect(wrapper.find('#task-1')).to.have.lengthOf(1)
+
+    wrapper.find('#task-remove-0').simulate('click')
+    expect(wrapper.find('#task-0')).to.have.lengthOf(0)
+    expect(wrapper.find('#task-1')).to.have.lengthOf(1)
+  })
+
+  it('Removes the last task when - is clicked on the last item and 2 tasks exist', () => {
+    const wrapper = render()
+    wrapper.find('#task-add').simulate('click')
+    wrapper.find('#task-add').simulate('click')
+    expect(wrapper.find('#task-1')).to.have.lengthOf(1)
+
+    wrapper.find('#task-remove-1').simulate('click')
+    expect(wrapper.find('#task-0')).to.have.lengthOf(1)
+    expect(wrapper.find('#task-1')).to.have.lengthOf(0)
+  })
 })
