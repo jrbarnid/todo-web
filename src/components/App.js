@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import '../css/App.css'
 
-function App() {
+export default () => {
   return (
     <div className="container">
       <div className="pt-5">
@@ -17,5 +17,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
