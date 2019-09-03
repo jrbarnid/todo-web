@@ -8,16 +8,33 @@ export default () => {
   const [tasks, setTasks] = useState([])
 
   const handleAddTaskClicked = () => {
-    let newTasks = [...tasks, {
-      id: tasks.length,
-      value: ''
+    const newTasks = [...tasks, {
+      id: getId(),
+      value: '',
+      checked: false
     }]
     setTasks(newTasks)
+  }
+
+  const getId = () => {
+    return tasks.length === 0 ? 0 : tasks[tasks.length - 1].id + 1
   }
 
   const removeTaskCallback = index => {
     const newTasks = tasks.filter(task => task.id !== index)
     setTasks(newTasks)
+  }
+
+  const toggleDoneCallback = index => {
+    let newTasks = tasks
+
+    newTasks.forEach(task => {
+      if (task.id === index) {
+        task.checked = !task.checked
+      }
+    })
+
+    setTasks([...newTasks])
   }
 
   return (
@@ -33,6 +50,7 @@ export default () => {
       <Task 
         tasks={tasks} 
         removeTaskCallback={removeTaskCallback}
+        toggleDoneCallback={toggleDoneCallback}
       />
     </div>
   );

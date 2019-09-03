@@ -5,7 +5,7 @@ fixture `Use the task list`// declare the fixture
  
  
 //then create a test and place your code there
-test('User can add and remove a task', async t => {
+test('User can interact with tasks', async t => {
     await t
         .expect(Selector('#task-header').innerText).eql('Tasks')
         
@@ -15,4 +15,7 @@ test('User can add and remove a task', async t => {
 
         .click('#task-remove')
         .expect(Selector('#task-0').count).eql(0)
+
+        .click('#task-add')
+        .click
 });
